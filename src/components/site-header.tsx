@@ -10,6 +10,7 @@ const navLinks = [
   { label: "Articles", href: "#articles" },
   { label: "Notes", href: "#notes" },
   { label: "Newsletter", href: "#newsletter" },
+  { label: "À propos", to: "/a-propos" },
 ];
 
 export function SiteHeader() {
@@ -34,15 +35,25 @@ export function SiteHeader() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-10 text-sm text-muted-foreground md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) =>
+            link.to ? (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            ),
+          )}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -68,16 +79,27 @@ export function SiteHeader() {
       {open && (
         <nav className="border-t border-border/60 bg-background/95 backdrop-blur-md md:hidden">
           <div className="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={close}
-                className="rounded-md px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.to ? (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={close}
+                  className="rounded-md px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={close}
+                  className="rounded-md px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              ),
+            )}
             <a
               href="#newsletter"
               onClick={close}
