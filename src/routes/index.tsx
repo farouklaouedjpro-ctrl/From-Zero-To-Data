@@ -127,8 +127,8 @@ function Home() {
           {visible.length === 0 && (
             <p className="mt-16 text-sm text-muted-foreground">
               {articles.length === 0
-                ? "Aucun article pour le moment — ça arrive."
-                : "Rien encore dans cette catégorie — ça arrive."}
+                ? "Aucun article pour le moment, ça arrive."
+                : "Rien encore dans cette catégorie, ça arrive."}
             </p>
           )}
         </section>
@@ -154,7 +154,7 @@ function Home() {
             </ul>
             {notes.length === 0 && (
               <p className="mt-8 text-sm text-muted-foreground">
-                Aucune note courte pour le moment — ça arrive.
+                Aucune note courte pour le moment, ça arrive.
               </p>
             )}
           </div>

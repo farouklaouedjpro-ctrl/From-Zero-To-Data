@@ -54,7 +54,7 @@ function AboutPage() {
             </h2>
             <p className="mt-5">
               J'ai commencé à écrire sur la data et l'IA parce que j'en apprenais
-              en construisant — et que la plupart des ressources que je trouvais
+              en construisant, et que la plupart des ressources que je trouvais
               étaient soit trop théoriques, trop marketing, ou trop avancées pour
               quelqu'un qui démarre.
             </p>
@@ -72,7 +72,7 @@ function AboutPage() {
             </h2>
             <p className="mt-5">
               Des articles sur la data engineering, l'analytics et l'intelligence
-              artificielle — écrits lentement, avec le souci d'être utile plutôt
+              artificielle, écrits lentement, avec le souci d'être utile plutôt
               que spectaculaire.
             </p>
             <ul className="mt-4 list-disc space-y-2 pl-6">
@@ -81,11 +81,11 @@ function AboutPage() {
                 les outils qui marchent vraiment en production.
               </li>
               <li>
-                <strong>Analytics</strong> : requêtes, métriques, dashboards —
+                <strong>Analytics</strong> : requêtes, métriques, dashboards,
                 comment tirer de la valeur de la donnée sans se perdre en chemin.
               </li>
               <li>
-                <strong>Intelligence Artificielle</strong> : RAG, agents, LLM —
+                <strong>Intelligence Artificielle</strong> : RAG, agents, LLM,
                 une lecture honnête de ce qui fonctionne et de ce qui ne
                 fonctionne pas.
               </li>

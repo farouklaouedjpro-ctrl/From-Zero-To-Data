@@ -21,7 +21,7 @@ export function NewsletterSection() {
 
           {sent ? (
             <p className="mt-10 text-sm text-primary">
-              Merci — tu recevras le prochain article dans ta boîte.
+              Merci, tu recevras le prochain article dans ta boîte.
             </p>
           ) : (
             <form
