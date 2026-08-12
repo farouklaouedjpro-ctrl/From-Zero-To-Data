@@ -152,6 +152,11 @@ function Home() {
                 </li>
               ))}
             </ul>
+            {notes.length === 0 && (
+              <p className="mt-8 text-sm text-muted-foreground">
+                Aucune note courte pour le moment — ça arrive.
+              </p>
+            )}
           </div>
         </section>
 
