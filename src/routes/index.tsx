@@ -14,8 +14,7 @@ export const Route = createFileRoute("/")({
     const allArticles = await loadArticles();
     const notes = await loadNotes();
     const featured = allArticles.find((a) => a.featured) ?? allArticles[0];
-    const articles = allArticles.filter((a) => a !== featured);
-    return { articles, featured, notes };
+    return { articles: allArticles, featured, notes };
   },
   head: () => ({
     meta: [
