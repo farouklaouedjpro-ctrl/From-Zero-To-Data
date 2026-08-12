@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 
 import { SiteHeader } from "@/components/site-header";
@@ -74,12 +74,13 @@ function Home() {
               <p className="mt-8 text-xs text-muted-foreground">
                 {featured.date} · {featured.readingTime}
               </p>
-              <a
-                href={`#${featured.slug}`}
+              <Link
+                to="/articles/$slug"
+                params={{ slug: featured.slug }}
                 className="mt-8 inline-block border-b border-primary pb-1 text-sm font-medium text-primary"
               >
                 Lire l'article
-              </a>
+              </Link>
             </div>
           </div>
         </section>

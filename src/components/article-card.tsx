@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import type { Article } from "@/data/articles";
 
 export function ArticleCard({ article }: { article: Article }) {
@@ -8,6 +9,7 @@ export function ArticleCard({ article }: { article: Article }) {
           src={article.cover}
           alt={article.title}
           loading="lazy"
+          decoding="async"
           width={1024}
           height={768}
           className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -15,11 +17,13 @@ export function ArticleCard({ article }: { article: Article }) {
       </div>
       <p className="eyebrow mt-6">{article.category}</p>
       <h3 className="mt-3 text-xl font-bold leading-snug transition-colors group-hover:text-primary">
-        <a href={`#${article.slug}`}>{article.title}</a>
+        <Link to="/articles/$slug" params={{ slug: article.slug }}>
+          {article.title}
+        </Link>
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{article.excerpt}</p>
       <p className="mt-5 text-xs text-muted-foreground">
-        {article.date} · {article.readingTime}
+        <time dateTime={article.date}>{article.date}</time> · {article.readingTime}
       </p>
     </article>
   );
