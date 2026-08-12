@@ -60,38 +60,40 @@ function Home() {
         </section>
 
         {/* Featured */}
-        <section className="mx-auto max-w-6xl px-6">
-          <div className="grid items-center gap-12 border-y border-border/60 py-16 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
-            <div className="overflow-hidden rounded-md border border-border/60">
-              <img
-                src={featured.cover}
-                alt={featured.title}
-                width={1280}
-                height={800}
-                className="aspect-[16/10] w-full object-cover"
-              />
+        {featured && (
+          <section className="mx-auto max-w-6xl px-6">
+            <div className="grid items-center gap-12 border-y border-border/60 py-16 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
+              <div className="overflow-hidden rounded-md border border-border/60">
+                <img
+                  src={featured.cover}
+                  alt={featured.title}
+                  width={1280}
+                  height={800}
+                  className="aspect-[16/10] w-full object-cover"
+                />
+              </div>
+              <div>
+                <p className="eyebrow">À la une · {featured.category}</p>
+                <h2 className="mt-6 text-3xl font-bold leading-tight md:text-4xl">
+                  {featured.title}
+                </h2>
+                <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+                  {featured.excerpt}
+                </p>
+                <p className="mt-8 text-xs text-muted-foreground">
+                  {featured.date} · {featured.readingTime}
+                </p>
+                <Link
+                  to="/articles/$slug"
+                  params={{ slug: featured.slug }}
+                  className="mt-8 inline-block border-b border-primary pb-1 text-sm font-medium text-primary"
+                >
+                  Lire l'article
+                </Link>
+              </div>
             </div>
-            <div>
-              <p className="eyebrow">À la une · {featured.category}</p>
-              <h2 className="mt-6 text-3xl font-bold leading-tight md:text-4xl">
-                {featured.title}
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-                {featured.excerpt}
-              </p>
-              <p className="mt-8 text-xs text-muted-foreground">
-                {featured.date} · {featured.readingTime}
-              </p>
-              <Link
-                to="/articles/$slug"
-                params={{ slug: featured.slug }}
-                className="mt-8 inline-block border-b border-primary pb-1 text-sm font-medium text-primary"
-              >
-                Lire l'article
-              </Link>
-            </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Articles */}
         <section id="articles" className="mx-auto max-w-6xl px-6 py-28">
@@ -122,7 +124,9 @@ function Home() {
 
           {visible.length === 0 && (
             <p className="mt-16 text-sm text-muted-foreground">
-              Rien encore dans cette catégorie — ça arrive.
+              {articles.length === 0
+                ? "Aucun article pour le moment — ça arrive."
+                : "Rien encore dans cette catégorie — ça arrive."}
             </p>
           )}
         </section>
