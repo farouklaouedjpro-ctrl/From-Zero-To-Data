@@ -5,9 +5,16 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { NewsletterSection } from "@/components/newsletter-section";
 import { ArticleCard } from "@/components/article-card";
-import { articles, categories, featured, notes } from "@/data/articles";
+import { categories, notes } from "@/data/articles";
+import { loadArticles } from "@/lib/articles";
 
 export const Route = createFileRoute("/")({
+  loader: async () => {
+    const allArticles = await loadArticles();
+    const featured = allArticles.find((a) => a.featured) ?? allArticles[0];
+    const articles = allArticles.filter((a) => a !== featured);
+    return { articles, featured };
+  },
   head: () => ({
     meta: [
       { title: "From Zero to Data — Blog sur la data et l'IA" },
@@ -28,6 +35,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const { articles, featured } = Route.useLoaderData();
   const [active, setActive] = useState("Tout");
   const visible =
     active === "Tout" ? articles : articles.filter((a) => a.category === active);

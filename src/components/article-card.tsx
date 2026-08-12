@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import type { Article } from "@/data/articles";
+import type { Article } from "@/lib/articles";
 
 export function ArticleCard({ article }: { article: Article }) {
   return (

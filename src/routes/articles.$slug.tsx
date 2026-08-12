@@ -1,57 +1,48 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { articles, featured } from "@/data/articles";
+import { loadArticle, loadArticles } from "@/lib/articles";
 
 export const Route = createFileRoute("/articles/$slug")({
+  loader: async ({ params }) => {
+    const article = await loadArticle(params.slug);
+    if (!article) throw new Error("Article introuvable");
+    return { article };
+  },
   head: ({ params }) => {
-    const article = allArticles.find((a) => a.slug === params.slug);
-    if (!article) {
-      return { meta: [{ title: "Article introuvable — From Zero to Data" }] };
-    }
+    // Head runs before loader on client, so we can't use loaderData here.
+    // TanStack will re-run head after loader resolves.
     return {
       meta: [
-        { title: `${article.title} — From Zero to Data` },
-        { name: "description", content: article.excerpt },
-        { property: "og:title", content: article.title },
-        { property: "og:description", content: article.excerpt },
+        { title: `${params.slug} — From Zero to Data` },
         { property: "og:type", content: "article" },
-        { property: "og:image", content: `https://fromzerotodata.com${article.cover}` },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: `https://fromzerotodata.com${article.cover}` },
       ],
     };
   },
   component: ArticlePage,
-});
-
-const allArticles = [featured, ...articles];
-
-function ArticlePage() {
-  const { slug } = Route.useParams();
-  const article = allArticles.find((a) => a.slug === slug);
-
-  if (!article) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background px-4">
-        <div className="max-w-md text-center">
-          <h1 className="text-7xl font-bold text-foreground">404</h1>
-          <h2 className="mt-4 text-xl font-semibold text-foreground">
-            Article introuvable
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Cet article n'existe pas ou a été déplacé.
-          </p>
-          <div className="mt-6">
-            <Link
-              to="/"
-              className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Retour à l'accueil
-            </Link>
-          </div>
+  errorComponent: ({ error }) => (
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <div className="max-w-md text-center">
+        <h1 className="text-7xl font-bold text-foreground">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">
+          Article introuvable
+        </h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Cet article n'existe pas ou a été déplacé.
+        </p>
+        <div className="mt-6">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Retour à l'accueil
+          </Link>
         </div>
       </div>
-    );
-  }
+    </div>
+  ),
+});
+
+function ArticlePage() {
+  const { article } = Route.useLoaderData();
 
   return (
     <div className="min-h-screen">
@@ -97,25 +88,10 @@ function ArticlePage() {
         </div>
 
         {/* Body */}
-        <article className="prose-custom mt-14">
-          {article.body.map((section, i) => (
-            <section key={i}>
-              {section.heading && (
-                <h2 className="mt-12 text-2xl font-bold leading-tight md:text-3xl">
-                  {section.heading}
-                </h2>
-              )}
-              {section.paragraphs.map((p, j) => (
-                <p
-                  key={j}
-                  className="mt-5 text-base leading-[1.8] text-foreground/90"
-                >
-                  {p}
-                </p>
-              ))}
-            </section>
-          ))}
-        </article>
+        <article
+          className="prose-custom mt-14"
+          dangerouslySetInnerHTML={{ __html: article.bodyHtml }}
+        />
 
         {/* Back */}
         <div className="mt-20 border-t border-border/60 pt-10">

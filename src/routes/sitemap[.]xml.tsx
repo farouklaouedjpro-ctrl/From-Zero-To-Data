@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { articles, featured } from "@/data/articles";
+import { loadArticles } from "@/lib/articles";
 
 const SITE_URL = "https://fromzerotodata.com";
 
@@ -7,7 +7,7 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
-        const allArticles = [featured, ...articles];
+        const allArticles = await loadArticles();
 
         const articleUrls = allArticles
           .map(
