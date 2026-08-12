@@ -5,15 +5,17 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { NewsletterSection } from "@/components/newsletter-section";
 import { ArticleCard } from "@/components/article-card";
-import { categories, notes } from "@/data/articles";
+import { categories } from "@/data/articles";
 import { loadArticles } from "@/lib/articles";
+import { loadNotes } from "@/lib/notes";
 
 export const Route = createFileRoute("/")({
   loader: async () => {
     const allArticles = await loadArticles();
+    const notes = await loadNotes();
     const featured = allArticles.find((a) => a.featured) ?? allArticles[0];
     const articles = allArticles.filter((a) => a !== featured);
-    return { articles, featured };
+    return { articles, featured, notes };
   },
   head: () => ({
     meta: [
@@ -35,7 +37,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { articles, featured } = Route.useLoaderData();
+  const { articles, featured, notes } = Route.useLoaderData();
   const [active, setActive] = useState("Tout");
   const visible =
     active === "Tout" ? articles : articles.filter((a) => a.category === active);
