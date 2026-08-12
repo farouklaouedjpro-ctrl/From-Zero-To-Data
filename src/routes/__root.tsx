@@ -79,7 +79,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "From Zero to Data" },
       { property: "og:description", content: "Blog sur la data et l'intelligence artificielle." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://fromzerotodata.com/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://fromzerotodata.com/og-image.png" },
     ],
     links: [
       {
@@ -93,6 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=DM+Sans:wght@400;500&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "alternate", type: "application/rss+xml", title: "From Zero to Data — RSS", href: "/rss.xml" },
     ],
   }),
 
