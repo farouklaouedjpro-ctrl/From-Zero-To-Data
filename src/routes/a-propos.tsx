@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
+import { PageHeader } from "@/components/page-header";
+
 export const Route = createFileRoute("/a-propos")({
   head: () => ({
     meta: [
@@ -24,24 +26,9 @@ export const Route = createFileRoute("/a-propos")({
 function AboutPage() {
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-          <Link to="/" className="group flex items-baseline gap-2">
-            <span className="font-display text-lg font-bold tracking-tight">
-              From Zero to <span className="text-gradient-mint">Data</span>
-            </span>
-          </Link>
-          <Link
-            to="/"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            ← Retour
-          </Link>
-        </div>
-      </header>
+      <PageHeader />
 
-      <main className="mx-auto max-w-3xl px-6 py-16 md:py-24">
+      <main id="main-content" className="mx-auto max-w-3xl px-6 py-16 md:py-24">
         <p className="eyebrow">À propos</p>
         <h1 className="mt-6 text-3xl font-bold leading-tight md:text-5xl">
           Ce blog, en bref.
@@ -77,12 +64,14 @@ function AboutPage() {
             </p>
             <ul className="mt-4 list-disc space-y-2 pl-6">
               <li>
-                <strong>Data Engineering</strong> : pipelines, SQL, orchestration,
-                les outils qui marchent vraiment en production.
+                <strong>Comprendre la donnée</strong> : d'où elle vient, comment
+                la lire, comment ne pas se tromper — les bases qui rendent une
+                analyse fiable.
               </li>
               <li>
-                <strong>Analytics</strong> : requêtes, métriques, dashboards,
-                comment tirer de la valeur de la donnée sans se perdre en chemin.
+                <strong>Analytics</strong> : SQL, requêtes, métriques, dashboards,
+                comment transformer la donnée en décisions sans se perdre en
+                chemin.
               </li>
               <li>
                 <strong>Intelligence Artificielle</strong> : RAG, agents, LLM,
@@ -111,24 +100,17 @@ function AboutPage() {
 
           <section>
             <h2 className="text-2xl font-bold leading-tight">
-              Me contacter
+              Rester au courant
             </h2>
             <p className="mt-5">
-              Vous pouvez me trouver sur{" "}
+              Le plus simple pour suivre ce blog : la{" "}
               <a
-                href="https://www.linkedin.com"
+                href="/#newsletter"
                 className="text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
               >
-                LinkedIn
-              </a>{" "}
-              ou m'envoyer un email à{" "}
-              <a
-                href="mailto:hello@fromzerotodata.com"
-                className="text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
-              >
-                hello@fromzerotodata.com
+                newsletter
               </a>
-              . Je lis tout, même si je ne réponds pas toujours rapidement.
+              . Un article, deux fois par mois, rien d'autre.
             </p>
           </section>
         </div>

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { PageHeader } from "@/components/page-header";
 import { loadArticle, loadArticles } from "@/lib/articles";
 
 export const Route = createFileRoute("/articles/$slug")({
@@ -7,19 +8,20 @@ export const Route = createFileRoute("/articles/$slug")({
     if (!article) throw new Error("Article introuvable");
     return { article };
   },
-  head: ({ params }) => {
-    // Head runs before loader on client, so we can't use loaderData here.
-    // TanStack will re-run head after loader resolves.
+  head: ({ params, loaderData }) => {
+    // Head runs before loader on client, so loaderData is absent on the
+    // first pass; TanStack re-runs head after the loader resolves.
+    const articleTitle = loaderData?.article?.title;
     return {
       meta: [
-        { title: `${params.slug} — From Zero to Data` },
+        { title: articleTitle ? `${articleTitle} — From Zero to Data` : `${params.slug} — From Zero to Data` },
         { property: "og:type", content: "article" },
       ],
     };
   },
   component: ArticlePage,
   errorComponent: ({ error }) => (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div id="main-content" className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">
@@ -46,24 +48,9 @@ function ArticlePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-          <Link to="/" className="group flex items-baseline gap-2">
-            <span className="font-display text-lg font-bold tracking-tight">
-              From Zero to <span className="text-gradient-mint">Data</span>
-            </span>
-          </Link>
-          <Link
-            to="/"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            ← Retour
-          </Link>
-        </div>
-      </header>
+      <PageHeader backLabel="Tous les articles" />
 
-      <main className="mx-auto max-w-3xl px-6 py-16 md:py-24">
+      <main id="main-content" className="mx-auto max-w-3xl px-6 py-16 md:py-24">
         {/* Meta */}
         <p className="eyebrow">{article.category}</p>
         <h1 className="mt-6 text-3xl font-bold leading-tight md:text-5xl">
