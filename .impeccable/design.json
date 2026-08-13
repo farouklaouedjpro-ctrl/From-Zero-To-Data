@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-12T00:00:00.000Z",
+  "title": "Design System: From Zero to Data",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Menthe Éclat",
+        "canonical": "oklch(0.55 0.13 168)",
+        "tonalRamp": ["oklch(0.15 0.04 168)", "oklch(0.24 0.06 168)", "oklch(0.33 0.08 168)", "oklch(0.42 0.1 168)", "oklch(0.55 0.13 168)", "oklch(0.65 0.14 168)", "oklch(0.76 0.14 168)", "oklch(0.9 0.09 168)"]
+      },
+      "primary-glow": {
+        "role": "primary",
+        "displayName": "Éclat Lumineux",
+        "canonical": "oklch(0.68 0.15 162)",
+        "tonalRamp": ["oklch(0.18 0.05 162)", "oklch(0.28 0.07 162)", "oklch(0.38 0.09 162)", "oklch(0.5 0.11 162)", "oklch(0.68 0.15 162)", "oklch(0.76 0.14 162)", "oklch(0.86 0.1 162)", "oklch(0.95 0.05 162)"]
+      },
+      "background": {
+        "role": "neutral",
+        "displayName": "Brume de Serre",
+        "canonical": "oklch(0.985 0.008 160)",
+        "tonalRamp": ["oklch(0.15 0.02 160)", "oklch(0.3 0.02 160)", "oklch(0.45 0.02 160)", "oklch(0.6 0.015 160)", "oklch(0.75 0.01 160)", "oklch(0.85 0.008 160)", "oklch(0.93 0.006 160)", "oklch(0.985 0.008 160)"]
+      },
+      "foreground": {
+        "role": "neutral",
+        "displayName": "Encre Feuillage",
+        "canonical": "oklch(0.24 0.035 215)",
+        "tonalRamp": ["oklch(0.15 0.02 215)", "oklch(0.24 0.035 215)", "oklch(0.35 0.03 215)", "oklch(0.48 0.025 215)", "oklch(0.62 0.02 215)", "oklch(0.76 0.015 215)", "oklch(0.88 0.01 215)", "oklch(0.96 0.005 215)"]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Blanc Semis",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": ["oklch(0.2 0.02 200)", "oklch(0.3 0.02 200)", "oklch(0.45 0.015 200)", "oklch(0.6 0.01 200)", "oklch(0.75 0.005 200)", "oklch(0.88 0.003 200)", "oklch(0.96 0.001 200)", "oklch(1 0 0)"]
+      },
+      "muted-foreground": {
+        "role": "neutral",
+        "displayName": "Encre Douce",
+        "canonical": "oklch(0.48 0.02 205)",
+        "tonalRamp": ["oklch(0.2 0.02 205)", "oklch(0.3 0.02 205)", "oklch(0.48 0.02 205)", "oklch(0.6 0.015 205)", "oklch(0.72 0.015 205)", "oklch(0.84 0.01 205)", "oklch(0.92 0.006 205)", "oklch(0.97 0.003 205)"]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Mousse",
+        "canonical": "oklch(0.93 0.03 165)",
+        "tonalRamp": ["oklch(0.2 0.02 165)", "oklch(0.3 0.03 165)", "oklch(0.42 0.035 165)", "oklch(0.55 0.035 165)", "oklch(0.68 0.035 165)", "oklch(0.8 0.03 165)", "oklch(0.9 0.03 165)", "oklch(0.96 0.02 165)"]
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Liseré",
+        "canonical": "oklch(0.89 0.015 190)",
+        "tonalRamp": ["oklch(0.25 0.02 190)", "oklch(0.35 0.02 190)", "oklch(0.48 0.02 190)", "oklch(0.6 0.015 190)", "oklch(0.72 0.012 190)", "oklch(0.82 0.012 190)", "oklch(0.89 0.015 190)", "oklch(0.95 0.008 190)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Titres (hero, sections, cartes). Espacement resserré -0.025em."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphes de contenu, extraits. Max 65ch."
+      },
+      "label": {
+        "displayName": "Label / Eyebrow",
+        "purpose": "Eyebrows de section et de carte, 0.6875rem, 0.22em, uppercase."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-lift",
+        "value": "0 24px 60px -34px oklch(0.3 0.03 215 / 0.28)",
+        "purpose": "Seule ombre du système. Détache les cartes et surfaces proéminentes. Sombre : 0 24px 60px -30px oklch(0.1 0.02 220 / 0.9)"
+      },
+      {
+        "name": "glow-mint",
+        "value": "0 0 60px -10px color-mix(in oklab, var(--primary) 30%, transparent)",
+        "purpose": "Halo ponctuel autour des accents primaires. Usage très rare. Sombre : 45% d'intensité."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-in-out",
+        "value": "ease-in-out",
+        "purpose": "Transitions d'état (header, hover). Durée 300ms."
+      },
+      {
+        "name": "image-zoom",
+        "value": "scale(1.03) sur 700ms",
+        "purpose": "Zoom très lent des images de cartes au hover."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Bouton primaire (contenu)",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA principal dans le contenu (s'abonner à la newsletter). Presque carré, fond menthe.",
+      "html": "<button class=\"ds-btn-primary\">Je m'abonne</button>",
+      "css": ".ds-btn-primary { background: oklch(0.55 0.13 168); color: oklch(0.99 0.005 160); padding: 12px 24px; border: none; border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: opacity 0.2s; } .ds-btn-primary:hover { opacity: 0.9; } .ds-btn-primary:focus-visible { outline: 2px solid oklch(0.55 0.13 168); outline-offset: 2px; }"
+    },
+    {
+      "name": "Bouton pill (header)",
+      "kind": "button",
+      "refersTo": "button-primary-pill",
+      "description": "CTA du header « S'abonner ». Pille pleinement ronde, outline menthe, remplissage au hover.",
+      "html": "<button class=\"ds-btn-pill\">S'abonner</button>",
+      "css": ".ds-btn-pill { background: transparent; color: oklch(0.55 0.13 168); padding: 8px 20px; border: 1px solid oklch(0.55 0.13 168 / 0.6); border-radius: 9999px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: background 0.2s, color 0.2s; } .ds-btn-pill:hover { background: oklch(0.55 0.13 168); color: oklch(0.99 0.005 160); } .ds-btn-pill:focus-visible { outline: 2px solid oklch(0.55 0.13 168); outline-offset: 2px; }"
+    },
+    {
+      "name": "Bouton secondaire (outline)",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Actions secondaires : retour, réessayer. Bordure neutre, fond background.",
+      "html": "<button class=\"ds-btn-outline\">Retour à l'accueil</button>",
+      "css": ".ds-btn-outline { background: oklch(0.985 0.008 160); color: oklch(0.24 0.035 215); padding: 8px 16px; border: 1px solid oklch(0.89 0.015 190); border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: background 0.2s; } .ds-btn-outline:hover { background: oklch(0.9 0.05 165); } .ds-btn-outline:focus-visible { outline: 2px solid oklch(0.55 0.13 168); outline-offset: 2px; }"
+    },
+    {
+      "name": "Champ email (newsletter)",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Champ de saisie email de la newsletter. Presque carré, focus par bordure menthe.",
+      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"prenom@exemple.com\" aria-label=\"Adresse e-mail\" />",
+      "css": ".ds-input { width: 100%; background: oklch(0.985 0.008 160); color: oklch(0.24 0.035 215); padding: 12px 16px; border: 1px solid oklch(0.89 0.015 190); border-radius: 2px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; outline: none; box-sizing: border-box; } .ds-input::placeholder { color: oklch(0.48 0.02 205); } .ds-input:focus { border-color: oklch(0.55 0.13 168); }"
+    },
+    {
+      "name": "Filtre de catégorie (chip)",
+      "kind": "chip",
+      "refersTo": "chip-filter",
+      "description": "Filtres de catégorie de la home. Pill inactive outline, active en fond menthe.",
+      "html": "<button class=\"ds-chip ds-chip-active\">Data Engineering</button>",
+      "css": ".ds-chip { background: transparent; color: oklch(0.48 0.02 205); padding: 6px 16px; border: 1px solid oklch(0.89 0.015 190); border-radius: 9999px; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500; cursor: pointer; transition: border-color 0.2s, color 0.2s; } .ds-chip:hover { border-color: oklch(0.55 0.13 168 / 0.6); color: oklch(0.24 0.035 215); } .ds-chip-active { background: oklch(0.55 0.13 168); color: oklch(0.99 0.005 160); border-color: oklch(0.55 0.13 168); } .ds-chip:focus-visible { outline: 2px solid oklch(0.55 0.13 168); outline-offset: 2px; }"
+    },
+    {
+      "name": "Carte d'article",
+      "kind": "card",
+      "refersTo": "card-article",
+      "description": "Carte d'article de la grille. Image 4/3 + eyebrow + titre + extrait + métadonnées.",
+      "html": "<article class=\"ds-card\"><img src=\"https://picsum.photos/400/300\" alt=\"\" class=\"ds-card-img\" /><p class=\"ds-card-eyebrow\">Data Engineering</p><h3 class=\"ds-card-title\">Un titre d'article</h3><p class=\"ds-card-excerpt\">Un extrait court pour donner envie de lire.</p><p class=\"ds-card-meta\">12 août 2026 · 8 min</p></article>",
+      "css": ".ds-card { font-family: 'DM Sans', sans-serif; } .ds-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 1px solid oklch(0.89 0.015 190 / 0.6); border-radius: 4px; transition: transform 0.7s; } .ds-card:hover .ds-card-img { transform: scale(1.03); } .ds-card-eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.55 0.13 168); margin: 24px 0 0; } .ds-card-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 700; line-height: 1.375; letter-spacing: -0.025em; margin: 12px 0 0; color: oklch(0.24 0.035 215); } .ds-card:hover .ds-card-title { color: oklch(0.55 0.13 168); } .ds-card-excerpt { font-size: 0.875rem; line-height: 1.6; color: oklch(0.48 0.02 205); margin: 12px 0 0; } .ds-card-meta { font-size: 0.75rem; color: oklch(0.48 0.02 205); margin: 20px 0 0; }"
+    },
+    {
+      "name": "Lien de navigation (header)",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Liens de navigation du header. Discrets, passent en foreground au hover.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#articles\">Articles</a><a href=\"#notes\">Notes</a><a href=\"#newsletter\">Newsletter</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; } .ds-nav a { color: oklch(0.48 0.02 205); text-decoration: none; transition: color 0.2s; } .ds-nav a:hover { color: oklch(0.24 0.035 215); } .ds-nav a:focus-visible { outline: 2px solid oklch(0.55 0.13 168); outline-offset: 2px; }"
+    },
+    {
+      "name": "Eyebrow (label de section)",
+      "kind": "custom",
+      "refersTo": "label",
+      "description": "Micro-label uppercase au-dessus des titres : « Le blog », « À la une », « Newsletter ».",
+      "html": "<p class=\"ds-eyebrow\">Le blog</p>",
+      "css": ".ds-eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: oklch(0.55 0.13 168); margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Le Jardin Systématique",
+    "overview": "Le blog cultive la clarté comme un jardin : chaque élément pousse lentement, en profondeur, et rien ne crie. Le système visuel est une serre calme où la data est expliquée une idée à la fois — pas un laboratoire bruyant ni un portfolio tape-à-l'oeil. Le fond est une brume de serre très légèrement teintée de vert, les titres respirent dans un display géométrique, et la seule touche de couleur vive — la Menthe Éclat — apparaît rarement, comme une pousse éclairée au milieu du feuillage. L'esthétique est restreinte et précise : bords presque droits (radius de base 4px), ombres discrètes, hiérarchie typographique nette. L'espace est le luxe principal — sections de 7rem, marges généreuses, lignes de lecture courtes. Le mode sombre n'est pas un inversé mécanique : les verts s'éclaircissent (la menthe devient lumineuse sur fond profond), les teintes restent dans la même famille chromatique.",
+    "keyCharacteristics": [
+      "Palette unique famille verte-cyan (mint), appliquée avec parcimonie",
+      "Typographie duale : Space Grotesk (display) + DM Sans (body)",
+      "Radius serré (4px de base) — bords proches du franc, jamais mous",
+      "Élévation plate par défaut, une seule ombre « lift » pour les cartes, glow mint rare",
+      "Espacement généreux et constant (7rem / 4rem / 1.5rem)"
+    ],
+    "rules": [
+      { "name": "The Rarity Rule", "body": "L'accent Menthe Éclat couvre au plus ~5% d'un écran. Une seule zone en dégradé mint par viewport. Sa rareté est ce qui le rend précieux.", "section": "colors" },
+      { "name": "The Family Rule", "body": "Tous les neutres sont teintés de la même famille vert-cyan. Interdit d'introduire un gris pur ou une teinte chaude dans le neutre.", "section": "colors" },
+      { "name": "The Breathing Rule", "body": "Aucun bloc de texte ne dépasse ~65 caractères par ligne. L'espace respire : les titres ont des marges supérieures généreuses (mt-6 à mt-10), jamais de texte collé à un titre.", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "Les surfaces sont plates au repos. Une ombre n'apparaît que lorsqu'un élément a une raison fonctionnelle de se détacher (carte en hover, dialogue ouvert).", "section": "elevation" }
+    ],
+    "dos": [
+      "Do utiliser la Menthe Éclat avec parcimonie — une seule zone d'accent par zone de l'écran.",
+      "Do garder les coins presque droits (4px) pour les surfaces de contenu ; les pills restent l'exception pour les CTAs et filtres.",
+      "Do laisser respirer : sections à 7rem, gouttières à 1.5rem, lignes de texte ≤65ch.",
+      "Do teinter tous les neutres de la famille vert-cyan (jamais de gris pur).",
+      "Do utiliser le dégradé mint uniquement sur le logo et l'accent de la section newsletter."
+    ],
+    "donts": [
+      "Don't ajouter une seconde couleur d'accent — la palette est monofamiliale par design.",
+      "Don't multiplier les ombres : surface plate par défaut, shadow-lift seulement pour détacher un élément.",
+      "Don't centrer le hero ou les blocs de texte — le système lit de gauche à droite.",
+      "Don't utiliser le glow mint comme décoration permanente ; il est réservé aux accents ponctuels.",
+      "Don't introduire des arrondis doux (12px+) sur les surfaces de lecture — le radius serré est l'identité."
+    ]
+  }
+}
