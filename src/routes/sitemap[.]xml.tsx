@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { loadArticles } from "@/lib/articles";
+import { frenchDateToIso } from "@/lib/dates";
 
 const SITE_URL = "https://fromzerotodata.com";
 
@@ -14,7 +15,7 @@ export const Route = createFileRoute("/sitemap.xml")({
             (a) => `
   <url>
     <loc>${SITE_URL}/articles/${a.slug}</loc>
-    <lastmod>${a.date}</lastmod>
+    <lastmod>${frenchDateToIso(a.date)}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>`,

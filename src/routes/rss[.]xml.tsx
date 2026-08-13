@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { loadArticles } from "@/lib/articles";
+import { frenchDateToRfc2822 } from "@/lib/dates";
 
 const SITE_URL = "https://fromzerotodata.com";
 const SITE_NAME = "From Zero to Data";
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/rss.xml")({
       <link>${SITE_URL}/articles/${a.slug}</link>
       <guid isPermaLink="true">${SITE_URL}/articles/${a.slug}</guid>
       <description><![CDATA[${a.excerpt}]]></description>
-      <pubDate>${new Date(a.date).toUTCString()}</pubDate>
+      <pubDate>${frenchDateToRfc2822(a.date)}</pubDate>
       <category>${a.category}</category>
     </item>`,
           )

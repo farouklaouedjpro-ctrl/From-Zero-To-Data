@@ -1,5 +1,7 @@
 import { marked } from "marked";
 
+import { parseFrenchDate } from "@/lib/dates";
+
 export type Article = {
   slug: string;
   title: string;
@@ -22,10 +24,11 @@ function parseFrontmatter(raw: string): {
   body: string;
 } {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-  if (!match) return { frontmatter: {}, body: raw };
+  const rawFrontmatter = match?.[1] ?? "";
+  const body = match?.[2] ?? raw;
 
   const frontmatter: Record<string, string> = {};
-  for (const line of match[1].split("\n")) {
+  for (const line of rawFrontmatter.split("\n")) {
     const colonIndex = line.indexOf(":");
     if (colonIndex === -1) continue;
     const key = line.slice(0, colonIndex).trim();
@@ -37,7 +40,12 @@ function parseFrontmatter(raw: string): {
     frontmatter[key] = value;
   }
 
-  return { frontmatter, body: match[2] };
+  return { frontmatter, body };
+}
+
+function slugFromPath(path: string): string {
+  const file = path.split("/").pop() ?? "";
+  return file.replace(/\.md$/, "");
 }
 
 let cachedArticles: Article[] | null = null;
@@ -55,31 +63,20 @@ export async function loadArticles(): Promise<Article[]> {
     const bodyHtml = marked(body, { breaks: true }) as string;
 
     articles.push({
-      slug: frontmatter.slug || "",
-      title: frontmatter.title || "",
-      excerpt: frontmatter.excerpt || "",
-      category: frontmatter.category || "",
-      date: frontmatter.date || "",
-      readingTime: frontmatter.readingTime || "",
-      cover: frontmatter.cover || "",
-      featured: frontmatter.featured === "true",
+      slug: frontmatter["slug"] || slugFromPath(path),
+      title: frontmatter["title"] || "",
+      excerpt: frontmatter["excerpt"] || "",
+      category: frontmatter["category"] || "",
+      date: frontmatter["date"] || "",
+      readingTime: frontmatter["readingTime"] || "",
+      cover: frontmatter["cover"] || "",
+      featured: frontmatter["featured"] === "true",
       bodyHtml,
     });
   }
 
   // Sort by date descending (most recent first)
-  articles.sort((a, b) => {
-    const parseDate = (d: string) => {
-      const months: Record<string, number> = {
-        janvier: 0, février: 1, mars: 2, avril: 3, mai: 4, juin: 5,
-        juillet: 6, août: 7, septembre: 8, octobre: 9, novembre: 10, décembre: 11,
-      };
-      const parts = d.split(" ");
-      if (parts.length < 3) return 0;
-      return new Date(parseInt(parts[2]), months[parts[1].toLowerCase()] ?? 0, parseInt(parts[0])).getTime();
-    };
-    return parseDate(b.date) - parseDate(a.date);
-  });
+  articles.sort((a, b) => parseFrenchDate(b.date).getTime() - parseFrenchDate(a.date).getTime());
 
   cachedArticles = articles;
   return articles;
