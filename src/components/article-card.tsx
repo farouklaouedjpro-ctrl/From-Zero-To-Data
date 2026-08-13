@@ -4,7 +4,7 @@ import type { Article } from "@/lib/articles";
 export function ArticleCard({ article }: { article: Article }) {
   return (
     <article className="group">
-      <div className="overflow-hidden rounded-md border border-border/60">
+      <div className="overflow-hidden rounded-md border border-border/60 transition-shadow duration-500 group-hover:shadow-[var(--shadow-lift)]">
         <img
           src={article.cover}
           alt={article.title}

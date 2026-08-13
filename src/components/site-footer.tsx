@@ -32,10 +32,10 @@ export function SiteFooter() {
                 Newsletter
               </a>
               <a
-                href="https://www.linkedin.com"
+                href="/rss.xml"
                 className="block text-muted-foreground hover:text-foreground"
               >
-                LinkedIn
+                Flux RSS
               </a>
             </div>
           </div>
