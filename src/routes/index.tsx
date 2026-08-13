@@ -45,9 +45,17 @@ function Home() {
     <div className="min-h-screen">
       <SiteHeader />
 
-      <main>
+      <main id="main-content">
         {/* Hero */}
-        <section id="top" className="mx-auto max-w-6xl px-6 pb-24 pt-28 md:pt-36">
+        <section id="top" className="relative mx-auto max-w-6xl px-6 pb-24 pt-28 md:pt-36">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 -top-10 -z-10 h-96"
+            style={{
+              background:
+                "radial-gradient(55% 60% at 50% 35%, color-mix(in oklab, var(--primary) 9%, transparent), transparent)",
+            }}
+          />
           <p className="eyebrow">Le blog</p>
           <h1 className="mt-8 max-w-3xl text-4xl font-bold leading-[1.08] md:text-6xl">
             Comprendre la data et l'IA,
@@ -100,20 +108,29 @@ function Home() {
         <section id="articles" className="mx-auto max-w-6xl px-6 py-28">
           <div className="flex flex-wrap items-baseline justify-between gap-8">
             <h2 className="text-2xl font-bold md:text-3xl">Derniers articles</h2>
-            <div className="flex flex-wrap gap-2">
-              {categories.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setActive(c)}
-                  className={
-                    active === c
-                      ? "rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground"
-                      : "rounded-full border border-border px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
-                  }
-                >
-                  {c}
-                </button>
-              ))}
+            <div className="-mx-6 flex gap-2 overflow-x-auto px-6 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:px-0 [&::-webkit-scrollbar]:hidden">
+              {categories.map((c) => {
+                const count =
+                  articles.length > 0
+                    ? c === "Tout"
+                      ? articles.length
+                      : articles.filter((a) => a.category === c).length
+                    : null;
+                return (
+                  <button
+                    key={c}
+                    onClick={() => setActive(c)}
+                    aria-pressed={active === c}
+                    className={
+                      active === c
+                        ? "shrink-0 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground"
+                        : "shrink-0 whitespace-nowrap rounded-full border border-border px-4 py-1.5 text-xs text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
+                    }
+                  >
+                    {count === null ? c : `${c} (${count})`}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -124,11 +141,19 @@ function Home() {
           </div>
 
           {visible.length === 0 && (
-            <p className="mt-16 text-sm text-muted-foreground">
-              {articles.length === 0
-                ? "Aucun article pour le moment, ça arrive."
-                : "Rien encore dans cette catégorie, ça arrive."}
-            </p>
+            <div className="mt-16 max-w-xl">
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                {articles.length === 0
+                  ? "Aucun article pour le moment — ça pousse, doucement."
+                  : "Rien encore dans cette catégorie — ça pousse, doucement."}
+              </p>
+              <a
+                href="#newsletter"
+                className="mt-6 inline-block border-b border-primary pb-1 text-sm font-medium text-primary"
+              >
+                Sois prévenu du prochain article
+              </a>
+            </div>
           )}
         </section>
 
@@ -136,13 +161,13 @@ function Home() {
         <section id="notes" className="mx-auto max-w-6xl px-6 pb-28">
           <div className="border-t border-border/60 pt-16">
             <h2 className="text-2xl font-bold md:text-3xl">Notes courtes</h2>
-            <ul className="mt-12 divide-y divide-border/60">
+            <ul className="mt-10 divide-y divide-border/60">
               {notes.map((n) => (
                 <li
                   key={n.title}
-                  className="group flex flex-col gap-2 py-7 md:flex-row md:items-center md:justify-between md:gap-10"
+                  className="group flex flex-col gap-1.5 py-4 md:flex-row md:items-baseline md:justify-between md:gap-10"
                 >
-                  <p className="text-lg font-medium transition-colors group-hover:text-primary">
+                  <p className="text-base font-medium transition-colors group-hover:text-primary">
                     {n.title}
                   </p>
                   <p className="shrink-0 text-xs text-muted-foreground">
@@ -152,9 +177,17 @@ function Home() {
               ))}
             </ul>
             {notes.length === 0 && (
-              <p className="mt-8 text-sm text-muted-foreground">
-                Aucune note courte pour le moment, ça arrive.
-              </p>
+              <div className="mt-8 max-w-xl">
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  Aucune note courte pour le moment — ça pousse, doucement.
+                </p>
+                <a
+                  href="#newsletter"
+                  className="mt-4 inline-block border-b border-primary pb-1 text-sm font-medium text-primary"
+                >
+                  Sois prévenu du prochain article
+                </a>
+              </div>
             )}
           </div>
         </section>
