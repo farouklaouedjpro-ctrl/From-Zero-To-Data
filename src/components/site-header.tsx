@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Mail, Menu, X } from "lucide-react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useScrollDirection } from "@/hooks/use-scroll-direction";
@@ -22,7 +22,7 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md transition-transform duration-300 ease-in-out ${
+      className={`sticky top-0 z-40 border-b border-border/60 bg-background/80 pt-[env(safe-area-inset-top)] backdrop-blur-md transition-transform duration-300 ease-in-out ${
         isHidden && !open ? "-translate-y-full" : "translate-y-0"
       }`}
     >
@@ -64,11 +64,19 @@ export function SiteHeader() {
           >
             S'abonner
           </a>
+          <a
+            href="#newsletter"
+            aria-label="S'abonner à la newsletter"
+            className="flex size-11 items-center justify-center rounded-full border border-primary/60 text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:hidden"
+          >
+            <Mail className="size-4" />
+          </a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
-            className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground md:hidden"
+            aria-expanded={open}
+            className="flex size-11 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground md:hidden"
           >
             {open ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
